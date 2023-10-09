@@ -77,8 +77,8 @@ fn main() -> std::io::Result<()> {
     let mut count = 0;
     let mut solutions = vec![];
     let n;
-    let args = env::args().nth(1).expect("Not enough arguments provided.");
-    n = args.parse().expect("Args not in correct format");
+    let args = env::args().nth(1).expect("Not enough arguments provided. !!Usage: nyolc_vezer [number of queens]");
+    n = args.parse().expect("Args not in correct format !!Usage: nyolc_vezer [number of queens]");
     let mut file = File::create(format!("{0}x{0}_megoldasok.txt", n))?;
 
     vezerek(n, &mut vec![0; n], 0, &mut count, &mut solutions, &mut file)?;
