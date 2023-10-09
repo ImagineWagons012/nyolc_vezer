@@ -95,7 +95,7 @@ fn main() -> std::io::Result<()> {
         write_solution_to_file(solution, &mut file)?;
         file.write_all(b"\n\n")?;
     }
-    file.write_all(b"Nincs t\xF6bb megold\xE1s.")?;
+    file.write_all("Nincs több megoldás.".as_bytes())?;
 
 
     Ok(())
