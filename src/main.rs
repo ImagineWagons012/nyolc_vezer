@@ -9,7 +9,7 @@ fn vezerek(n:usize, y:&mut Vec<i32>, i:usize, count:&mut u32, solutions:&mut Vec
                 y[i] = lol as i32;
                 if i == n-1 { 
                     *count += 1;
-                    write_solution_to_file(&y, file)?;
+                    solutions.push(y.clone());
                     continue;
                 }
                 if vezerek(n, y, i+1, count, solutions, file).unwrap() {
@@ -83,19 +83,19 @@ fn main() -> std::io::Result<()> {
 
     vezerek(n, &mut vec![0; n], 0, &mut count, &mut solutions, &mut file)?;
     println!("{}", count);
-    // for (i, solution) in solutions.iter().enumerate() {
-    //     println!("{}. megoldás:", i+1);
-    //     print_solution(solution);
-    //     println!("\n\n");
-    // }
-    // println!("Nincs több megoldás.");
+    for (i, solution) in solutions.iter().enumerate() {
+        println!("{}. megoldás:", i+1);
+        print_solution(solution);
+        println!("\n\n");
+    }
+    println!("Nincs több megoldás.");
     
-    // for (i, solution) in solutions.iter().enumerate() {
-    //     file.write_all(format!("{}. megoldás:\n", i+1).as_bytes())?;
-    //     write_solution_to_file(solution, &mut file)?;
-    //     file.write_all(b"\n\n")?;
-    // }
-    // file.write_all(b"Nincs t\xF6bb megold\xE1s.")?;
+    for (i, solution) in solutions.iter().enumerate() {
+        file.write_all(format!("{}. megoldás:\n", i+1).as_bytes())?;
+        write_solution_to_file(solution, &mut file)?;
+        file.write_all(b"\n\n")?;
+    }
+    file.write_all(b"Nincs t\xF6bb megold\xE1s.")?;
 
 
     Ok(())
